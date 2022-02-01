@@ -10,10 +10,6 @@ var Arr = [];
 // Player number in room
 var count = 0;
 
-if (count === 3) {
-  count = 0;
-  alert("Room is full");
-}
 // Defining Branch
 var branch = ref(db, `/playerNum`);
 
@@ -21,8 +17,11 @@ var branch = ref(db, `/playerNum`);
 onValue(branch, function (snap) {
   count = snap.val().count || 0;
   // Checking
-  console.log(count);
- 
+
+  if (count == 3) {
+    alert("Room is full");
+    count = 0;
+  }
 });
 
 // Assigning user name to global variable
@@ -53,24 +52,19 @@ $(".players button").on("click", function () {
     count,
   });
   writeUserData(name, value, 0, 0);
-
-  // let branch1 = ref(db, `/users/${name}`);
-  // set(branch1, {
-  //   name: name,
-  //   choice: value,
-  // });
 });
 var newArr = [];
-var player1 = "";
-var player2 = "";
+var player1;
+var player2;
 
-onValue(ref(db, `/players/${name}`), function (snap) {
+onValue(ref(db, `/users`), function (snap) {
   const test = snap.val();
+
   for (let value of Object.values(test)) {
-    // console.log(value[0][1]);
-    let user = value[0][1];
-    newArr.push(user);
+    newArr.push(value.choice);
   }
+
+  console.log(newArr);
   player1 = newArr[0];
   player2 = newArr[1];
   comparison();
