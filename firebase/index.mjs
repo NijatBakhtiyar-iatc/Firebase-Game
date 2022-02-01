@@ -28,6 +28,17 @@ onValue(branch, function (snap) {
 $(".inputName button").on("click", function () {
   name = $(".inputName input").val();
   $(".inputName").html(`Hi, ${name}`);
+
+  //message visible
+  $(".player-message").css("display", "block");
+
+  // bot message
+  const botMessage = $("<div class='message-node'>");
+  botMessage.html(`Hi ${name}, you can message in here!!!`);
+
+  // scroll bottom in message place
+  $("#chat").animate({ scrollTop: $("#chat").prop("scrollHeight") }, 500);
+  $("#chat").append(botMessage);
 });
 
 // Function for filling user data to database
@@ -64,7 +75,7 @@ onValue(ref(db, `/users`), function (snap) {
     newArr.push(value.choice);
   }
 
-  console.log(newArr);
+  // console.log(newArr);
   player1 = newArr[0];
   player2 = newArr[1];
   comparison();
@@ -111,3 +122,36 @@ function comparison() {
     console.log("Player1 Wins");
   }
 }
+
+// Players message section
+$("#inp-form").on("submit", function (e) {
+  e.preventDefault();
+
+  const message = $("#message").val();
+
+  var messagePush = push(ref(db, `/users/messages`));
+
+  set(messagePush, [message, name]);
+
+  $("#message").val("");
+
+  $("#chat").animate({ scrollTop: $("#chat").prop("scrollHeight") }, 500);
+});
+
+$("#color").val("#ffffff");
+
+onValue(ref(db, `/users/messages`), function (snap) {
+  const messages = snap.val();
+  $("#chat").html("");
+  let inputColor = $("#color").val();
+
+  for (let [key, value] of Object.entries(messages)) {
+    const messageNode = $(`<div class='message-node' data-key=${key}>`);
+    messageNode.html(value[1] + " - " + value[0]);
+    if (value[1] == name) {
+      messageNode.css({ background: `${inputColor}` });
+    }
+
+    $("#chat").append(messageNode);
+  }
+});
