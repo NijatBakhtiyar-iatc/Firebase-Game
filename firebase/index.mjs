@@ -19,6 +19,7 @@ onValue(branch, function (snap) {
   // Checking
   console.log(count);
   if (count === 2) {
+    count = 0;
     alert("Room is full");
   }
 });
