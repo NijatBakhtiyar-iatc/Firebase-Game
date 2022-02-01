@@ -10,6 +10,10 @@ var Arr = [];
 // Player number in room
 var count = 0;
 
+if (count === 2) {
+  count = 0;
+  alert("Room is full");
+}
 // Defining Branch
 var branch = ref(db, `/playerNum`);
 
@@ -18,10 +22,7 @@ onValue(branch, function (snap) {
   count = snap.val().count || 0;
   // Checking
   console.log(count);
-  if (count === 2) {
-    count = 0;
-    alert("Room is full");
-  }
+ 
 });
 
 // Assigning user name to global variable
