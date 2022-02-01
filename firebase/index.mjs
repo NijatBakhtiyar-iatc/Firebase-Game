@@ -10,7 +10,7 @@ var Arr = [];
 // Player number in room
 var count = 0;
 
-if (count === 2) {
+if (count === 3) {
   count = 0;
   alert("Room is full");
 }
