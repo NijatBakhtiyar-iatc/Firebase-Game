@@ -8,8 +8,10 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
+  <script src="./emoji/emojionearea.min.js"></script>
     <script type="module" defer src="https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js"></script>
     <script type="module" defer src="./firebase/index.mjs"></script>
+    <link rel="stylesheet" href="./emoji/emojionearea.min.css">
     <link rel="stylesheet" href="style.css">
     <title>31.01.2022</title>
 </head>
@@ -32,8 +34,13 @@
         <div id="chat"></div>
     <input type="color" id="color"> 
     <form id="inp-form">
-        <input type="text" id="message">
+        <input type="text" id="message"/>
+        <button>Send</button>
     </form>
     </div>
+
+    <!-- <div class="text">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div> -->
 </body>
 </html>

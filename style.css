@@ -29,3 +29,12 @@
 .message-node + .message-node{
     border-top: 1px solid #ccc;
 }
+
+#inp-form{
+    display: flex;
+    gap: 10px;
+}
+
+#inp-form button{
+    cursor: pointer;
+}

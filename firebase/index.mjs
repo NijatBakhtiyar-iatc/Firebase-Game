@@ -133,7 +133,9 @@ $("#inp-form").on("submit", function (e) {
 
   set(messagePush, [message, name]);
 
-  $("#message").val("");
+  $("#message").val(" ");
+
+  $(".emojionearea-editor").html("")
 
   $("#chat").animate({ scrollTop: $("#chat").prop("scrollHeight") }, 500);
 });
@@ -155,3 +157,6 @@ onValue(ref(db, `/users/messages`), function (snap) {
     $("#chat").append(messageNode);
   }
 });
+
+// emoji symbols installation
+$("#inp-form input" ).emojioneArea()
