@@ -28,6 +28,13 @@ onValue(branch, function (snap) {
 $(".inputName button").on("click", function () {
   name = $(".inputName input").val();
   $(".inputName").html(`Hi, ${name}`);
+  count++;
+
+  set(branch, {
+    count,
+  });
+
+  writeUserData(name, value, 0, 0);
 
   //message visible
   $(".player-message").css("display", "block");
@@ -57,69 +64,95 @@ $(".players button").on("click", function () {
 
   Arr = [name, value];
   $(".userChoice span").html(value);
-  count++;
-
-  set(branch, {
-    count,
-  });
+  
   writeUserData(name, value, 0, 0);
 });
 var newArr = [];
 var player1;
 var player2;
+var user1;
+var user2;
+
+var winPlayer = [];
 
 onValue(ref(db, `/users`), function (snap) {
   const test = snap.val();
-
+  newArr = [];
+  winPlayer = [];
   for (let value of Object.values(test)) {
     newArr.push(value.choice);
+    winPlayer.push(value.name)
   }
-
-  // console.log(newArr);
+  
+  // winPlayer = 
+  
   player1 = newArr[0];
   player2 = newArr[1];
+  
+  
+  user1 = winPlayer[0]
+  user2 = winPlayer[1]
+
   comparison();
 });
 
 function comparison() {
-  if ((player1 == "Rock") & (player2 == "Scissors")) {
+  console.log("Tetsttt");
+  if ((player1 == "Rock") && (player2 == "Scissors")) {
     console.log("Player1 wins");
+    $(".serverChoice span").html(`${user1} wins`)
   }
 
-  if ((player1 == "Rock") & (player2 == "Paper")) {
+  if ((player1 == "Rock") && (player2 == "Paper")) {
     console.log("Player2 wins");
+    $(".serverChoice span").html(`${user2} wins`)
+
   }
 
-  if ((player1 == "Rock") & (player2 == "Rock")) {
+  if ((player1 == "Rock") && (player2 == "Rock")) {
     console.log("Withdraw");
+    $(".serverChoice span").html("Withdraw")
+
   }
 
   // ***************************************
 
-  if ((player1 == "Scissors") & (player2 == "Scissors")) {
+  if ((player1 == "Scissors") && (player2 == "Scissors")) {
     console.log("Withdraw");
+    $(".serverChoice span").html("Withdraw")
+
   }
 
-  if ((player1 == "Scissors") & (player2 == "Paper")) {
+  if ((player1 == "Scissors") && (player2 == "Paper")) {
     console.log("Player1 wins");
+    $(".serverChoice span").html(`${user1} wins`)
+
   }
 
-  if ((player1 == "Scissors") & (player2 == "Rock")) {
+  if ((player1 == "Scissors") && (player2 == "Rock")) {
     console.log("Player2 wins");
+    $(".serverChoice span").html(`${user2} wins`)
+
   }
 
   // *******************************************
 
-  if ((player1 == "Paper") & (player2 == "Scissors")) {
+  if ((player1 == "Paper") && (player2 == "Scissors")) {
     console.log("Player2 Wins");
+    $(".serverChoice span").html(`${user2} wins`)
+
   }
 
-  if ((player1 == "Paper") & (player2 == "Paper")) {
+  if ((player1 == "Paper") && (player2 == "Paper")) {
     console.log("Withdraw");
+    $(".serverChoice span").html("Withdraw")
+
   }
 
-  if ((player1 == "Paper") & (player2 == "Rock")) {
+  if ((player1 == "Paper") && (player2 == "Rock")) {
     console.log("Player1 Wins");
+    $(".serverChoice span").html(`${user1} wins`)
+
   }
 }
 

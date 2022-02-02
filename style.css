@@ -10,7 +10,7 @@
 #chat{
     border: 1px solid #000;
     height: 200px;
-    max-height: 200px;
+    max-height: 180px;
     overflow: auto;
 }
 
@@ -37,4 +37,22 @@
 
 #inp-form button{
     cursor: pointer;
+}
+
+h1, .inputName, .players, p {
+    text-align: center;
+}
+
+.inputName {
+    margin-bottom: 1em;
+}
+
+.players> button {
+    width: 10em;
+    height: 10em;
+    
+}
+
+#inp-form {
+    /* width: 10em; */
 }

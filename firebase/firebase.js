@@ -4,7 +4,7 @@ import {
   set,
   ref,
   onValue,
-  push,
+  push
 } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
 
 const firebaseConfig = {
